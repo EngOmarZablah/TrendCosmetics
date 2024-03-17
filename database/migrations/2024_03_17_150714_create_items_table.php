@@ -22,13 +22,6 @@ return new class extends Migration
             $table->tinyInteger('hidden');
             $table->tinyInteger('available');
             $table->string('status');
-
-
-
-
-
-
-            $table->timestamps();
         });
     }
 

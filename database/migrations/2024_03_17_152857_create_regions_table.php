@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('regionName');
             $table->integer('deliveryPrice');
-            $table->timestamps();
+            
         });
     }
 

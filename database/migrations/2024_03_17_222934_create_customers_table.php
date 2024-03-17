@@ -25,7 +25,7 @@ return new class extends Migration
             $table->tinyInteger('accountType');
             $table->tinyInteger('status');
             $table->integer('verifyCode');
-            $table->timestamps();
+            
         });
     }
 

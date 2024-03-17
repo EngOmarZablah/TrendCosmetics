@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('customer_id')->constrained();
             $table->date('date');
             $table->tinyInteger('status');
-            $table->timestamps();
+            
         });
     }
 
