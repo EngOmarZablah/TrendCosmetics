@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\AdsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CatagoriesController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,5 +31,13 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
 });
 
-Route::get('/getcatagories', [CatagoriesController::class, 'getCatagories']);
-Route::get('/getprofiledetails/{id}', [ProfileController::class, 'getProfileDetails']);
+Route::get('/get_catagories', [CatagoriesController::class, 'getCatagories']);
+
+Route::get('/get_ads', [AdsController::class,'getAds']);
+
+Route::get('/get_profile_details/{id}', [ProfileController::class, 'getProfileDetails']);
+
+Route::get('/get_products/{subCatagoryId}',[ProductsController::class,'getProducts']);
+
+Route::get('/get_addresses/{id}',[AddressController::class,'getAddresses']);
+Route::post('/add_address',[AddressController::class,'addAdress']);
