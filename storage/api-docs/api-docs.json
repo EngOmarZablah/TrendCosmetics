@@ -13,32 +13,90 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/get_catagories": {
+        "/api/get_addresses": {
             "get": {
                 "tags": [
-                    "catagories"
+                    "Addresses"
                 ],
-                "summary": "Get all catagories",
-                "description": "Multiple status values can be provided with comma separated string",
-                "operationId": "getCatagories",
-                "parameters": [
+                "summary": "Get all addresses",
+                "description": "",
+                "operationId": "getAddresses",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                },
+                "security": [
                     {
-                        "name": "status",
-                        "in": "query",
-                        "description": "Status values that needed to be considered for filter",
-                        "required": true,
-                        "explode": true,
-                        "schema": {
-                            "type": "string",
-                            "default": "available",
-                            "enum": [
-                                "available",
-                                "pending",
-                                "sold"
-                            ]
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/add_address": {
+            "post": {
+                "tags": [
+                    "Addresses"
+                ],
+                "summary": "Add new address",
+                "description": "",
+                "operationId": "addAddress",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "region_id",
+                                    "city_id",
+                                    "township_id"
+                                ],
+                                "properties": {
+                                    "region_id": {
+                                        "description": "Enter your region",
+                                        "type": "string"
+                                    },
+                                    "city_id": {
+                                        "description": "Enter your city",
+                                        "type": "string"
+                                    },
+                                    "township_id": {
+                                        "description": "Enter your township",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
                         }
                     }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/get_ads": {
+            "get": {
+                "tags": [
+                    "Ads"
                 ],
+                "summary": "Get Ads",
+                "description": "",
+                "operationId": "getAds",
                 "responses": {
                     "200": {
                         "description": "successful operation"
@@ -47,6 +105,271 @@
                         "description": "Invalid status value"
                     }
                 }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login",
+                "description": "Login to system",
+                "operationId": "login",
+                "requestBody": {
+                    "description": "Pet object that needs to be added to the store",
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "description": "User email",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "User password",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Register",
+                "description": "Register to system",
+                "operationId": "register",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "firstName",
+                                    "lastName",
+                                    "email",
+                                    "phone",
+                                    "password",
+                                    "password_confirmation",
+                                    "street",
+                                    "region_id",
+                                    "city_id",
+                                    "township_id"
+                                ],
+                                "properties": {
+                                    "firstName": {
+                                        "description": "Enter your firstName",
+                                        "type": "string"
+                                    },
+                                    "lastName": {
+                                        "description": "Enter your lastName",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Enter your email",
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "description": "Enter your phone number",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Enter your password",
+                                        "type": "string"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Confirm your password",
+                                        "type": "string"
+                                    },
+                                    "street": {
+                                        "description": "Enter your street",
+                                        "type": "string"
+                                    },
+                                    "region_id": {
+                                        "description": "Enter your region",
+                                        "type": "integer"
+                                    },
+                                    "city_id": {
+                                        "description": "Enter your city",
+                                        "type": "integer"
+                                    },
+                                    "township_id": {
+                                        "description": "Enter your township",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Logout",
+                "description": "Logout from profile",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/refresh": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Refresh",
+                "description": "",
+                "operationId": "refresh",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/get_catagories": {
+            "get": {
+                "tags": [
+                    "Catagories"
+                ],
+                "summary": "Get all catagories",
+                "description": "Multiple status values can be provided with comma separated string",
+                "operationId": "getCatagories",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/get_products/{subCatagoryId}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get products by subCatagory",
+                "description": "",
+                "operationId": "getProducts",
+                "parameters": [
+                    {
+                        "name": "subCatagoryId",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                }
+            }
+        },
+        "/api/get_profile_details/{id}": {
+            "get": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Get profile info",
+                "description": "",
+                "operationId": "getProfileDetails",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
             }
         }
     }

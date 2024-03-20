@@ -7,8 +7,26 @@ use Illuminate\Support\Facades\DB;
 
 class AdsController extends Controller
 {
-    public function getAds(){
-        $ads=DB::table('ads')->get();
-        return response()->json([$ads,200]);
+    /**
+     * @OA\Get(
+     *     path="/api/get_ads",
+     *     tags={"Ads"},
+     *     summary="Get Ads",
+     *     description="",
+     *     operationId="getAds",
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid status value"
+     *     ),
+     * )
+     */
+    public function getAds()
+    {
+        $ads = DB::table('ads')->orderBy('id', 'desc')->limit(3)->get();
+        return response()->json([$ads, 200]);
     }
 }

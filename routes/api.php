@@ -33,11 +33,11 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::get('/get_catagories', [CatagoriesController::class, 'getCatagories']);
 
-Route::get('/get_ads', [AdsController::class,'getAds']);
+Route::get('/get_ads', [AdsController::class, 'getAds']);
 
 Route::get('/get_profile_details/{id}', [ProfileController::class, 'getProfileDetails']);
 
-Route::get('/get_products/{subCatagoryId}',[ProductsController::class,'getProducts']);
+Route::get('/get_products/{subCatagoryId}', [ProductsController::class, 'getProducts']);
 
-Route::get('/get_addresses/{id}',[AddressController::class,'getAddresses']);
-Route::post('/add_address',[AddressController::class,'addAdress']);
+Route::get('/get_addresses', [AddressController::class, 'getAddresses'])->middleware("auth:api");
+Route::post('/add_address', [AddressController::class, 'addAddress'])->middleware("auth:api");
