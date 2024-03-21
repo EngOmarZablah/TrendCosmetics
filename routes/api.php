@@ -4,8 +4,10 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AdsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CatagoriesController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,3 +43,9 @@ Route::get('/get_products/{subCatagoryId}', [ProductsController::class, 'getProd
 
 Route::get('/get_addresses', [AddressController::class, 'getAddresses'])->middleware("auth:api");
 Route::post('/add_address', [AddressController::class, 'addAddress'])->middleware("auth:api");
+
+Route::post('/add_order', [OrderController::class, 'addOrder'])->middleware("auth:api");
+
+Route::get('/get_regions', [RegionController::class, 'getRegions'])->middleware("auth:api");
+Route::get('/get_cities/{region_id}', [RegionController::class, 'getCities'])->middleware("auth:api");
+Route::get('/get_townships/{city_id}', [RegionController::class, 'getTownships'])->middleware("auth:api");

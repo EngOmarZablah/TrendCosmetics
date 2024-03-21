@@ -27,6 +27,6 @@ class AdsController extends Controller
     public function getAds()
     {
         $ads = DB::table('ads')->orderBy('id', 'desc')->limit(3)->get();
-        return response()->json([$ads, 200]);
+        return response()->json([$ads], 200);
     }
 }

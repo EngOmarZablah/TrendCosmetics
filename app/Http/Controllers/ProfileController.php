@@ -37,6 +37,6 @@ class ProfileController extends Controller
     public function getProfileDetails($id)
     {
         $customer=Customer::find($id);
-        return response()->json([$customer,200]);
+        return response()->json([$customer],200);
     }
 }

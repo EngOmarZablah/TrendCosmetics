@@ -28,6 +28,6 @@ class CatagoriesController extends Controller
     public function getCatagories()
     {
         $catagories = Catagory::all();
-        return response()->json([$catagories, 200]);
+        return response()->json([$catagories],200);
     }
 }

@@ -37,6 +37,6 @@ class ProductsController extends Controller
     public function getProducts($subCatagoryId)
     {
         $products = item::where('subCatagory_id', $subCatagoryId)->get();
-        return response()->json([$products, 200]);
+        return response()->json([$products], 200);
     }
 }

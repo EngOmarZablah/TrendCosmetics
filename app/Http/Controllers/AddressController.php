@@ -64,6 +64,11 @@ class AddressController extends Controller
      *                     property="township_id",
      *                     description="Enter your township",
      *                     type="string"
+     *                 ), 
+     *                 @OA\Property(
+     *                     property="details",
+     *                     description="Enter your details",
+     *                     type="string"
      *                 ),  
      *                 required={"region_id","city_id","township_id"}
      *             )
@@ -86,9 +91,10 @@ class AddressController extends Controller
         $region = Region::where('id', $request->region_id)->select('regionName')->first();
         $city = City::where('id', $request->city_id)->select('cityName')->first();
         $township = Township::where('id', $request->township_id)->select('townshipName')->first();
-        $address->address = $region->regionName . ' ' . $city->cityName . ' ' . $township->townshipName;
+        $details=$request->details;
+        $address->address = $region->regionName . ' , ' . $city->cityName . ' , ' . $township->townshipName . ' , ' . $details;
         $address->customer_id = $user->id;
         $address->save();
-        return response()->json([$address, 201]);
+        return response()->json([$address],201);
     }
 }

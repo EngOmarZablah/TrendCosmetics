@@ -67,6 +67,10 @@
                                     "township_id": {
                                         "description": "Enter your township",
                                         "type": "string"
+                                    },
+                                    "details": {
+                                        "description": "Enter your details",
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"
@@ -302,6 +306,72 @@
                 ]
             }
         },
+        "/api/add_order": {
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Add new order",
+                "description": "Add a new order for the authenticated user.",
+                "operationId": "addOrder",
+                "requestBody": {
+                    "description": "JSON object containing items to be added to the order",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "items": {
+                                        "description": "Array of items to be added to the order",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "item_id": {
+                                                    "description": "ID of the item",
+                                                    "type": "integer"
+                                                },
+                                                "quantity": {
+                                                    "description": "Quantity of the item",
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The order added",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The order added"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/api/get_products/{subCatagoryId}": {
             "get": {
                 "tags": [
@@ -360,6 +430,99 @@
                         "description": "error"
                     }
                 }
+            }
+        },
+        "/api/get_regions": {
+            "get": {
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "Get all regions",
+                "description": "",
+                "operationId": "getRegions",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/get_cities/{region_id}": {
+            "get": {
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "Get all cities",
+                "description": "",
+                "operationId": "getCities",
+                "parameters": [
+                    {
+                        "name": "region_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/get_townships/{city_id}": {
+            "get": {
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "Get all townships",
+                "description": "",
+                "operationId": "getTownships",
+                "parameters": [
+                    {
+                        "name": "city_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         }
     },
