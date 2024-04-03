@@ -185,7 +185,7 @@ class AuthController extends Controller
                 'township_id' => $request->township_id,
                 'accountType' => 0,
                 'status' => 0,
-                'verifyCode' => 3435,
+                'verifyCode' => random_int(100000, 999999),
             ]
         ));
 
@@ -225,7 +225,7 @@ class AuthController extends Controller
             'message' => 'Successfully logged out',
         ]);
     }
-    
+
     /**
      * @OA\POST(
      *     path="/api/refresh",

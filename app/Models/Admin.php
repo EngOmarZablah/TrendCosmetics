@@ -9,4 +9,11 @@ class Admin extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    protected $fillable = [
+        'firstName',
+        'lastName',
+        'email',
+        'password'
+    ];
 }
